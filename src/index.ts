@@ -7,6 +7,7 @@ const { binance } = pro;
 
 const symbols = ["ETH/BUSD"];
 const exchnages = [new binance()];
+const book_depth = 25;
 
 const main = async () => {
   const markets = [];
@@ -27,7 +28,11 @@ const main = async () => {
           symbol.symbol,
           exchange.id,
           "orderbook",
-          (o) => `${o.timestamp},${o.bids.slice(0, 5)},${o.asks.slice(0, 5)}`
+          (o) =>
+            `${o.timestamp},${o.bids.slice(0, book_depth)},${o.asks.slice(
+              0,
+              book_depth
+            )}`
         ),
       });
     }
