@@ -31,10 +31,7 @@ export class DataBroker {
   private async warchOrderbook() {
     while (true) {
       try {
-        const market = await this._exchange.watchOrderBook(
-          this._sym.symbol,
-          10
-        );
+        const market = await this._exchange.watchOrderBook(this._sym.symbol, 5);
         this.orderbook = market;
       } catch (err) {
         console.log("Error watching orderbook", err);
